@@ -11,5 +11,6 @@ library OrderData {
     struct SolverData { 
         uint256 stakeAmount; 
         
+        
     }
 }
