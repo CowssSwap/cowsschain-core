@@ -15,6 +15,7 @@ library OrderData {
         address destinationAddress;
         address sourceTokenAddress;
         address destinationTokenAddress;
+        bytes additionalData;
     }
 
     struct Order {

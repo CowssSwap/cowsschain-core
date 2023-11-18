@@ -6,6 +6,7 @@ import "openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol";
 
 abstract contract BaseVerifierContract is EIP712 {
     error JsonAuthentificationError(address _signer, address _sourceAddress);
+    event SignatureVerified();
 
     string constant fullOrderType =
         "FullOrder(uint32 sourceChainId,uint32 destinationChainId,bytes32 jsonHash,uint256 nonce,uint256 amountSourceToken,uint256 minDestinationTokenAmount,uint256 expirationTimestamp,uint256 stakeAmount,address sourceAddress,address destinationAddress,address sourceTokenAddress, address destinationTokenAddress)";

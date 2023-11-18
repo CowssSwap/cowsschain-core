@@ -7,18 +7,22 @@ import "solmate/tokens/ERC20.sol";
 import "./BaseVerifierContract.sol";
 
 contract EscrowSource is BaseVerifierContract, IEscrowSource {
+
     uint256 chainId;
     bytes32 emptyOrderHash;
-
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
     /**
-     * @dev Init the contract 
+     * @dev Init the contract
      * @param _name : name of the authentification contract
-     * @param _version : version of the authentifier 
+     * @param _version : version of the authentifier
      * @param _chainId : chain identifier
      */
-    constructor(string memory _name, string memory _version, uint256 _chainId) BaseVerifierContract(_name, _version) {
+    constructor(
+        string memory _name,
+        string memory _version,
+        uint256 _chainId
+    ) BaseVerifierContract(_name, _version) {
         chainId = _chainId;
 
         OrderData.Order memory emptyOrder = OrderData.Order({
@@ -27,21 +31,34 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
             sourceTokenAddress: address(0),
             sourceAddress: address(0),
             amountSourceToken: 0,
-            solverData: OrderData.SolverData({solverAddress: address(0), stakeAmount: 0})
+            solverData: OrderData.SolverData({
+                solverAddress: address(0),
+                stakeAmount: 0
+            })
         });
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
     /**
-     * @inheritdoc
+     * @inheritdoc IEscrowSource.sol
      */
-    function escrowFunds(bytes memory _json, bytes memory _signature) external payable override {
-        OrderData.FullOrder memory json = abi.decode(_json, (OrderData.FullOrder));
+    function escrowFunds(
+        bytes memory _json,
+        bytes memory _signature
+    ) external payable override {
+        OrderData.FullOrder memory json = abi.decode(
+            _json,
+            (OrderData.FullOrder)
+        );
 
-        address signatureAddress = BaseVerifierContract(address(this)).verifySignature(_json, _signature);
+        address signatureAddress = BaseVerifierContract(address(this))
+            .verifySignature(_json, _signature);
 
         if (signatureAddress != json.sourceAddress) {
-            revert JsonAuthentificationError(signatureAddress, json.sourceAddress);
+            revert JsonAuthentificationError(
+                signatureAddress,
+                json.sourceAddress
+            );
         }
 
         if (chainId != json.sourceChainId) {
@@ -62,7 +79,11 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
 
         // Transfer the source tokens from the user's wallet to escrow
 
-        ERC20(json.sourceTokenAddress).transferFrom(json.sourceAddress, address(this), json.amountSourceToken);
+        ERC20(json.sourceTokenAddress).transferFrom(
+            json.sourceAddress,
+            address(this),
+            json.amountSourceToken
+        );
 
         // Write the data into the state of the Escrow Constract
         jsonHashToOrder[json.jsonHash] = OrderData.Order({
@@ -71,14 +92,17 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
             sourceTokenAddress: json.sourceTokenAddress,
             sourceAddress: json.sourceAddress,
             amountSourceToken: json.amountSourceToken,
-            solverData: OrderData.SolverData({solverAddress: msg.sender, stakeAmount: json.stakeAmount})
+            solverData: OrderData.SolverData({
+                solverAddress: msg.sender,
+                stakeAmount: json.stakeAmount
+            })
         });
 
         emit FundsEscrowed(json.expirationTimestamp, json.jsonHash);
     }
 
     /**
-     * @inheritdoc
+     * @inheritdoc IEscrowSource.sol
      */
     function restituateFunds(bytes32 _jsonHash) external override {
         if (!isOrderSaved(_jsonHash)) {
@@ -93,9 +117,18 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
         address sourceAddress = order.sourceAddress;
         address sourceTokenAddress = order.sourceTokenAddress;
         uint256 amountSourceToken = order.amountSourceToken;
-        ERC20(sourceTokenAddress).transferFrom(address(this), sourceAddress, amountSourceToken);
+        ERC20(sourceTokenAddress).transferFrom(
+            address(this),
+            sourceAddress,
+            amountSourceToken
+        );
 
-        emit FundsRestituated(sourceAddress, sourceTokenAddress, amountSourceToken, _jsonHash);
+        emit FundsRestituated(
+            sourceAddress,
+            sourceTokenAddress,
+            amountSourceToken,
+            _jsonHash
+        );
     }
 
     // INTERNAL METHODS:
@@ -125,7 +158,11 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
 
         // unlock the funds from the escrow and transfer them to the solver
 
-        ERC20(order.sourceTokenAddress).transferFrom(address(this), solverAddress, order.amountSourceToken);
+        ERC20(order.sourceTokenAddress).transferFrom(
+            address(this),
+            solverAddress,
+            order.amountSourceToken
+        );
 
         // remove order from state
 
