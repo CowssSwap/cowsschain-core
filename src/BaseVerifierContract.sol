@@ -30,6 +30,7 @@ abstract contract BaseVerifierContract is EIP712 {
         OrderData.FullOrder order = abi.decode(_json, (OrderData.FullOrder));
         bytes32 digest = _hashTypedDataV4(
             keccak256(
+                // static types should be id. Dynamics types should be encoded static.
                 abi.encode(
                     keccak256(abi.encode(fullOrderType)),
                     order.sourceChainId,
