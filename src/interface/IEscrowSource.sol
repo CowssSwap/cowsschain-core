@@ -9,10 +9,19 @@ interface IEscrowSource {
     error OrderExpired(uint256 _blockTimestamp);
     error StakeInsufficientError(uint256 _stakeAmount);
 
-    // Events
+    error CompleteOrderOnInexistentOrderError(bytes32 _jsonHash);
+    error RestituateOrderOnInexistentOrderError(bytes32 _jsonHash);
+    error RestituateOrderOnNonExpiredOrderError(bytes32 _jsonHash);
 
+    // Events
     event FundsEscrowed(uint256 expirationTimestamp, bytes32 jsonHash);
     event FundReleased(address solverAddress, bytes32 jsonHash);
+    event FundsRestituated(
+        address sourceAddress,
+        address sourceTokenAddress,
+        uint256 amountSourceToken,
+        bytes32 _jsonHash
+    );
 
     /**
      * The function shall verify the json's autheticity, that the order was not already submitted.
@@ -27,9 +36,4 @@ interface IEscrowSource {
      * The function shall return the locked funds of the solver to the owner address
      */
     function restituateFunds(bytes32 _jsonHash) external;
-
-    /**
-     * The stake should be repaid.
-     */
-    function completeOrder(bytes32 _jsonHash) external;
 }
