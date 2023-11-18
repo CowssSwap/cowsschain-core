@@ -28,6 +28,7 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         //TODO: use quote dispatch to know how much we should pay
         uint256 fee = mailbox.quoteDispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
         mailbox.dispatch{value: fee}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
+        emit Broadcast(_jsonHash);
     }
 
     function isCompleted(bytes32 _jsonHash) public view returns (bool) {

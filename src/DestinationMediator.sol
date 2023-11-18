@@ -20,8 +20,6 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
         string memory _version
     ) BaseVerifierContract(_name, _version) {}
 
-    function broadcast(bytes32 _jsonHash) external override {}
-
     function depositFunds(
         bytes memory _json,
         bytes memory _signature
@@ -36,13 +34,15 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
             _json,
             _signature
         );
+
         address sourceAddress = order.sourceAddress;
         if (signer != sourceAddress) {
             revert JsonAuthentificationError(signer, sourceAddress);
         }
 
-        // Retrieve the funds from the solver and transfer to the destination address
+        emit SignatureVerified();
 
+        // Retrieve the funds from the solver and transfer to the destination address
         ERC20(order.destinationTokenAddress).transferFrom(
             msg.sender, // address of the solver
             order.destinationAddress,
