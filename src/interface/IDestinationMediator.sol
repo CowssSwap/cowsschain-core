@@ -7,6 +7,7 @@ interface IDestinationMediator {
 
     /**
      * Function verifies the validity of the json. Then, the function retrieves the funds from the solver
+     * and store the source chainId into the orderCompleted mapping.
      */
     function depositFunds(bytes memory _json, bytes memory _signature) external;
 
