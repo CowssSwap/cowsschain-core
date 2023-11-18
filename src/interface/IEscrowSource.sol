@@ -27,9 +27,4 @@ interface IEscrowSource {
      * The function shall return the locked funds of the solver to the owner address
      */
     function restituateFunds(bytes32 _jsonHash) external;
-
-    /**
-     * The stake should be repaid.
-     */
-    function completeOrder(bytes32 _jsonHash) external;
 }

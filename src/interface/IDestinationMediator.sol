@@ -14,5 +14,5 @@ interface IDestinationMediator {
     /**
      * Broadcast the message to the bridge if it has not been broadcasted
      */
-    function broadcast(bytes32 _jsonHash) external;
+    function broadcast(bytes32 _jsonHash) external payable;
 }

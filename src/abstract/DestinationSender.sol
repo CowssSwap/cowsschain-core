@@ -14,8 +14,7 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         setMailboxAddress(mailboxAddress);
     }
 
-    //TODO: ask for msg value
-    function broadcast(bytes32 _jsonHash) public {
+    function broadcast(bytes32 _jsonHash) public payable virtual {
         if (isCompleted(_jsonHash)) {
             revert BroadcasNotAllowed();
         }
@@ -23,8 +22,9 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         bytes memory jsonHashBytes = abi.encode(_jsonHash);
         uint256 sourceChainId = getSourceChainId(_jsonHash);
         bytes32 recipientAddress = bytes32(uint256(uint160(chainIdToEscrow[sourceChainId])));
-        bytes32 returned = mailbox.dispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
+        bytes32 returned = mailbox.dispatch{value: msg.value}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
         //TODO: check how to use returned
+        //transfer 
     }
 
     function isCompleted(bytes32 _jsonHash) public view returns(bool){
