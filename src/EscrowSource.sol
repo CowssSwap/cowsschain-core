@@ -12,6 +12,12 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
 
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
+    /**
+    @dev Init the contract 
+    @param _name : name of the authentification contract
+    @param _version : version of the authentifier 
+    @param _chainId : chain identifier
+     */
     constructor(
         string memory _name,
         string memory _version,
@@ -33,6 +39,9 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
+    /**
+    @inheritdoc
+     */
     function escrowFunds(
         bytes memory _json,
         bytes memory _signature
@@ -92,6 +101,9 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
         emit FundsEscrowed(json.expirationTimestamp, json.jsonHash);
     }
 
+    /**
+    @inheritdoc
+     */
     function restituateFunds(bytes32 _jsonHash) external override {
         if (!isOrderSaved(_jsonHash)) {
             revert RestituateOrderOnInexistentOrderError(_jsonHash);
@@ -122,14 +134,19 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
     // INTERNAL METHODS:
 
     /**
-    @dev Function that verifies if the order was saved in the mapping 
-    @param _jsonHash : hash of the json signed by the user
-    @return true if the order is already saved in the state
+     * @dev Function that verifies if the order was saved in the mapping
+     * @param _jsonHash : hash of the json signed by the user
+     * @return true if the order is already saved in the state
      */
     function isOrderSaved(bytes32 _jsonHash) private view returns (bool) {
         return (_jsonHash != emptyOrderHash);
     }
 
+    /**
+    @dev Call the function internally to complete the order
+    @param _jsonHash : hash of the json struct containing the order information
+
+     */
     function completeOrder(bytes32 _jsonHash) internal {
         if (!isOrderSaved(_jsonHash)) {
             revert CompleteOrderOnInexistentOrderError(_jsonHash);
@@ -151,7 +168,7 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
         // remove order from state
 
         delete jsonHashToOrder[_jsonHash];
-
+        
         emit FundReleased(solverAddress, _jsonHash);
     }
 }

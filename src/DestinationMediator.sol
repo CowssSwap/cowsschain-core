@@ -2,12 +2,41 @@
 pragma solidity ^0.8.17;
 
 import "./interface/IDestinationMediator.sol";
+import "./BaseVerifierContract.sol";
+import "./utils/OrderData.sol";
+import "solmate/tokens/ERC20.sol";
 
-contract DestinationMediator is IDestinationMediator {
+contract DestinationMediator is IDestinationMediator, BaseVerifierContract {
     mapping(uint256 => bool) isOrderBroadcasted;
 
 
-    function broadcast(bytes32 jsonHash) external override {}
+    /**
+    @dev Init the contract 
+    @param _name : name of the authentification contract
+    @param _version : version of the authentifier 
+     */
+    constructor(string memory _name, string memory _version) BaseVerifierContract(_name, _version) {}
 
-    function depositFunds(bytes memory json, bytes memory signature) external override {}
+    function broadcast(bytes32 _jsonHash) external override {}
+
+    function depositFunds(bytes memory _json, bytes memory _signature) external override {
+        OrderData.FullOrder memory order = abi.decode(_json, OrderData.FullOrder);
+
+        // Signature verification
+        address signer = BaseVerifierContract(address(this)).verifySignature(_json, _signature);
+        address sourceAddress = order.sourceAddress;
+        if (signer != sourceAddress) {
+            revert JsonAuthentificationError(signer, sourceAddress);
+        }
+
+        // Retrieve the funds from the solver and transfer to the destination address
+
+        ERC20(order.destinationTokenAddress).transferFrom(
+            msg.sender, // address of the solver
+            order.destinationAddress,
+            order.minDestinationTokenAmount
+        );
+
+        // TODO : Call the broadcast function
+    }
 }

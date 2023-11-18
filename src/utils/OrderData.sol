@@ -20,7 +20,7 @@ library OrderData {
     struct Order {
         bytes32 jsonHash;
         uint256 expirationTimestamp;
-        address sourceAddress; 
+        address sourceAddress;
         address sourceTokenAddress;
         uint256 amountSourceToken;
         SolverData solverData;
