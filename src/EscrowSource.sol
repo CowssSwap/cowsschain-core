@@ -38,12 +38,10 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
-    
     function verifySignature(
         bytes memory _json,
         bytes memory _signature
     ) external view override returns (address) {
-
         bytes32 digest = _hashTypedDataV4(
             keccak256(
                 abi.encode(
@@ -61,12 +59,20 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         bytes memory _json,
         bytes memory _signature
     ) external payable override {
-        // TODO : verify the signature
 
         OrderData.FullOrder memory json = abi.decode(
             _json,
             (OrderData.FullOrder)
         );
+
+        address signatureAddress = verifySignature(_json, _signature);
+
+        if (signatureAddress != json.sourceAddress) {
+            revert JsonAuthentificationError(
+                signatureAddress,
+                json.sourceAddress
+            );
+        }
 
         if (chainId != json.sourceChainId) {
             revert InvalidSourceChainError(json.sourceChainId);
@@ -93,7 +99,6 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         );
 
         // Write the data into the state of the Escrow Constract
-
         jsonHashToOrder[json.jsonHash] = OrderData.Order({
             jsonHash: json.jsonHash,
             expirationTimestamp: json.expirationTimestamp,

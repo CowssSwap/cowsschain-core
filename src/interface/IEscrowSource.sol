@@ -3,7 +3,7 @@ pragma solidity ^0.8.17;
 
 interface IEscrowSource {
     // Errors
-    error JsonAuthentificationError();
+    error JsonAuthentificationError(address _signer, address _sourceAddress);
     error InvalidSourceChainError(uint32 _chainId);
     error OrderAlreadySubmittedError(bytes32 _jsonHash);
     error OrderExpired(uint256 _blockTimestamp);
