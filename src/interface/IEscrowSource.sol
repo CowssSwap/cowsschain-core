@@ -18,7 +18,10 @@ interface IEscrowSource {
      * The function shall verify the json's autheticity, that the order was not already submitted.
      * Then, check the validity of the source chain id and escrow the user's tokens.
      */
-    function escrowFunds(bytes memory _json, bytes memory _signature) external payable;
+    function escrowFunds(
+        bytes memory _json,
+        bytes memory _signature
+    ) external payable;
 
     /**
      * The function shall return the locked funds of the solver to the owner address

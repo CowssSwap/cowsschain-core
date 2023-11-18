@@ -13,24 +13,36 @@ contract EscrowSource is IEscrowSource, EIP712 {
 
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
-    constructor(string memory _name, string memory _version, uint32 _chainId, bytes32 _domainSeparator)
-        EIP712(_name, _version)
-    {
+    constructor(
+        string memory _name,
+        string memory _version,
+        uint32 _chainId,
+        bytes32 _domainSeparator
+    ) EIP712(_name, _version) {
         chainId = _chainId;
         domainSeparator = _domainSeparator;
 
         OrderData.Order memory emptyOrder = OrderData.Order({
             jsonHash: bytes32(0),
             expirationTimestamp: 0,
-            solverData: OrderData.SolverData({solverAddress: address(0), stakeAmount: 0})
+            solverData: OrderData.SolverData({
+                solverAddress: address(0),
+                stakeAmount: 0
+            })
         });
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
-    function escrowFunds(bytes memory _json, bytes memory _signature) external payable override {
+    function escrowFunds(
+        bytes memory _json,
+        bytes memory _signature
+    ) external payable override {
         // TODO : verify the signature
 
-        OrderData.FullOrder memory json = abi.decode(_json, (OrderData.FullOrder));
+        OrderData.FullOrder memory json = abi.decode(
+            _json,
+            (OrderData.FullOrder)
+        );
 
         if (chainId != json.sourceChainId) {
             revert InvalidSourceChainError(json.sourceChainId);
@@ -50,14 +62,21 @@ contract EscrowSource is IEscrowSource, EIP712 {
 
         // Transfer the source tokens from the user's wallet to escrow
 
-        ERC20(json.sourceTokenAddress).transferFrom(json.sourceAddress, address(this), json.amountSourceToken);
+        ERC20(json.sourceTokenAddress).transferFrom(
+            json.sourceAddress,
+            address(this),
+            json.amountSourceToken
+        );
 
         // Write the data into the state of the Escrow Constract
 
         jsonHashToOrder[json.jsonHash] = OrderData.Order({
             jsonHash: json.jsonHash,
             expirationTimestamp: json.expirationTimestamp,
-            solverData: OrderData.SolverData({solverAddress: msg.sender, stakeAmount: json.stakeAmount})
+            solverData: OrderData.SolverData({
+                solverAddress: msg.sender,
+                stakeAmount: json.stakeAmount
+            })
         });
 
         emit FundsEscrowed(json.expirationTimestamp, json.jsonHash);
@@ -72,6 +91,11 @@ contract EscrowSource is IEscrowSource, EIP712 {
 
     // INTERNAL METHODS:
 
+    /**
+    @dev Function that verifies if the order was saved in the mapping 
+    @param _jsonHash : hash of the json signed by the user
+    @return true if the order is already saved in the state
+     */
     function isOrderSaved(bytes32 _jsonHash) private view returns (bool) {
         return (_jsonHash != emptyOrderHash);
     }
