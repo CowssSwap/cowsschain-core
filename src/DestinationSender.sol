@@ -1,6 +1,6 @@
 pragma solidity >=0.8.0;
 
-import "lib/hyperlane-monorepo.git/solidity/contracts/interfaces/IMailbox.sol";
+import "lib/hyperlane-monorepo/solidity/contracts/interfaces/IMailbox.sol";
 import "src/interface/IDestinationMediator.sol";
 import "lib/solmate/src/auth/Owned.sol";
 
@@ -24,8 +24,6 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         bytes32 recipientAddress = bytes32(
             uint256(uint160(chainIdToEscrow[sourceChainId]))
         );
-
-        //TODO: use quote dispatch to know how much we should pay
         uint256 fee = mailbox.quoteDispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
         mailbox.dispatch{value: fee}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
         emit Broadcast(_jsonHash);

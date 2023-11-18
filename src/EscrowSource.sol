@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "./interface/IEscrowSource.sol";
+import "./SourceReceiver.sol";
 import "./utils/OrderData.sol";
 import "solmate/tokens/ERC20.sol";
 import "./BaseVerifierContract.sol";
 
-contract EscrowSource is BaseVerifierContract, IEscrowSource {
-
-    uint256 chainId;
+contract EscrowSource is BaseVerifierContract, SourceReceiver {
     bytes32 emptyOrderHash;
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
@@ -16,14 +14,12 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
      * @dev Init the contract
      * @param _name : name of the authentification contract
      * @param _version : version of the authentifier
-     * @param _chainId : chain identifier
      */
     constructor(
         string memory _name,
         string memory _version,
-        uint256 _chainId
-    ) BaseVerifierContract(_name, _version) {
-        chainId = _chainId;
+        address mailboxAddress
+    ) BaseVerifierContract(_name, _version) SourceReceiver(mailboxAddress) {
 
         OrderData.Order memory emptyOrder = OrderData.Order({
             jsonHash: bytes32(0),
@@ -40,7 +36,7 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
     }
 
     /**
-     * @inheritdoc IEscrowSource.sol
+     * @inheritdoc SourceReceiver
      */
     function escrowFunds(
         bytes memory _json,
@@ -61,8 +57,12 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
             );
         }
 
-        if (chainId != json.sourceChainId) {
+        if (block.chainid != json.sourceChainId) {
             revert InvalidSourceChainError(json.sourceChainId);
+        }
+        
+        if (json.sourceChainId == json.sourceChainId){
+            revert DestinationChainSameAsSourceError();
         }
 
         if (json.expirationTimestamp < block.timestamp) {
@@ -102,7 +102,7 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
     }
 
     /**
-     * @inheritdoc IEscrowSource.sol
+     * @inheritdoc SourceReceiver
      */
     function restituateFunds(bytes32 _jsonHash) external override {
         if (!isOrderSaved(_jsonHash)) {
@@ -146,7 +146,7 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
      * @dev Call the function internally to complete the order
      * @param _jsonHash : hash of the json struct containing the order information
      */
-    function completeOrder(bytes32 _jsonHash) internal {
+    function completeOrder(bytes32 _jsonHash) internal override {
         if (!isOrderSaved(_jsonHash)) {
             revert CompleteOrderOnInexistentOrderError(_jsonHash);
         }

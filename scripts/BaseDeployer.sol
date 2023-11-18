@@ -9,8 +9,8 @@ contract BaseDeployer is Script {
     address deployerKey = vm.envUint("DEPLOYER_KEY");
     mapping(uint256 => string) chainIdToRPC;
     mapping(uint256 => address) chainIdToMailbox;
-    mapping(uint256 => address) chainIdToEscrow;
-    mapping(uint256 => address) chainIdToReceiver;
+    mapping(uint256 => EscrowSource) chainIdToEscrow;
+    mapping(uint256 => DestinationMediator) chainIdToMediator;
     uint256[] chainIds = [5, 10200, 421613, 420, 280, 84531, 80001 ];
 
     //const rpc={5:"https://ethereum-goerli.publicnode.com",10200:"https://1rpc.io/gnosis ",421613:"https://endpoints.omniatech.io/v1/arbitrum/goerli/public",420:"https://endpoints.omniatech.io/v1/op/goerli/public",280:"https://testnet.era.zksync.dev",84531:"https://endpoints.omniatech.io/v1/base/goerli/public ",80001:"https://endpoints.omniatech.io/v1/matic/mumbai/public"
@@ -46,10 +46,25 @@ contract BaseDeployer is Script {
     }
 
     function deploy() setupBroadcaster {
+        //deploy every contract
         for (uint i; i<chainIds.length; ++i){
             uint256 chainId = chainIds[i];
             vm.createSelectFork(chainIdToRPC[chainId]);
-            chainIdToEscrow[chainId] = new EscrowSource()
+            address mailboxAddress = chainIdToMailbox[chainId];
+            chainIdToEscrow[chainId] = new EscrowSource("cowsswap", "69.420", mailboxAddress);
+            chainIdToMediator[chainId] = new DestinationMediator("cowsswap", "69.420", mailboxAddress);
+        }
+        //fill the contracts mappings
+        for (uint i; i<chainIds.length; ++i){
+            uint256 mainChainId = chainIds[i];
+            address escrowAddress = address(chainIdToEscrow[mainChainId]);
+            address mediatorAddress = address(chainIdToMediator[mainChainId]);
+            for (uint j; j<chainIds.length; ++j){
+                address subChainId = chainIds[j];
+                vm.createSelectFork(chainIdToRPC[subChainId]);
+                chainIdToEscrow[subChainId].setSenderForChainId(subChainId, mediatorAddress);
+                chainIdToMediator[subChainId].setReceiverForChainId(subChainId, escrowAddress);
+            }
         }
     }
 }
