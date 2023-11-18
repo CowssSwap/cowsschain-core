@@ -2,34 +2,29 @@
 pragma solidity ^0.8.17;
 
 import "./interface/IEscrowSource.sol";
-import "./interface/IVerifierContract.sol";
 import "./utils/OrderData.sol";
 import "solmate/tokens/ERC20.sol";
-import "openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol";
-import "openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol";
+import "./BaseVerifierContract.sol";
 
-contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
+contract EscrowSource is BaseVerifierContract, IEscrowSource {
     uint256 chainId;
-    bytes32 domainSeparator;
     bytes32 emptyOrderHash;
 
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
-    string constant fullOrderType =
-        "FullOrder(uint32 sourceChainId,uint32 destinationChainId,bytes32 jsonHash,uint256 nonce,uint256 amountSourceToken,uint256 minDestinationTokenAmount,uint256 expirationTimestamp,uint256 stakeAmount,address sourceAddress,address destinationAddress,address sourceTokenAddress,address destinationTokenAddress)";
-
     constructor(
         string memory _name,
         string memory _version,
-        uint256 _chainId,
-        bytes32 _domainSeparator
-    ) EIP712(_name, _version) {
+        uint256 _chainId
+    ) BaseVerifierContract(_name, _version) {
         chainId = _chainId;
-        domainSeparator = _domainSeparator;
 
         OrderData.Order memory emptyOrder = OrderData.Order({
             jsonHash: bytes32(0),
             expirationTimestamp: 0,
+            sourceTokenAddress: address(0),
+            sourceAddress: address(0),
+            amountSourceToken: 0,
             solverData: OrderData.SolverData({
                 solverAddress: address(0),
                 stakeAmount: 0
@@ -38,34 +33,17 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
-    function verifySignature(
-        bytes memory _json,
-        bytes memory _signature
-    ) external view override returns (address) {
-        bytes32 digest = _hashTypedDataV4(
-            keccak256(
-                abi.encode(
-                    keccak256(abi.encode(fullOrderType)),
-                    keccak256(_json)
-                )
-            )
-        );
-
-        address signer = ECDSA.recover(digest, _signature);
-        return signer;
-    }
-
     function escrowFunds(
         bytes memory _json,
         bytes memory _signature
     ) external payable override {
-
         OrderData.FullOrder memory json = abi.decode(
             _json,
             (OrderData.FullOrder)
         );
 
-        address signatureAddress = verifySignature(_json, _signature);
+        address signatureAddress = BaseVerifierContract(address(this))
+            .verifySignature(_json, _signature);
 
         if (signatureAddress != json.sourceAddress) {
             revert JsonAuthentificationError(
@@ -102,6 +80,9 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         jsonHashToOrder[json.jsonHash] = OrderData.Order({
             jsonHash: json.jsonHash,
             expirationTimestamp: json.expirationTimestamp,
+            sourceTokenAddress: json.sourceTokenAddress,
+            sourceAddress: json.sourceAddress,
+            amountSourceToken: json.amountSourceToken,
             solverData: OrderData.SolverData({
                 solverAddress: msg.sender,
                 stakeAmount: json.stakeAmount
@@ -111,11 +92,31 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
         emit FundsEscrowed(json.expirationTimestamp, json.jsonHash);
     }
 
-    function restituateFunds(bytes32 jsonHash) external override {}
+    function restituateFunds(bytes32 _jsonHash) external override {
+        if (!isOrderSaved(_jsonHash)) {
+            revert RestituateOrderOnInexistentOrderError(_jsonHash);
+        }
 
-    function completeOrder(bytes32 jsonHash) external override {
-        // Remove the order from the mapping
-        delete jsonHashToOrder[jsonHash];
+        OrderData.Order memory order = jsonHashToOrder[_jsonHash];
+        if (block.timestamp <= order.expirationTimestamp) {
+            revert RestituateOrderOnNonExpiredOrderError(_jsonHash);
+        }
+
+        address sourceAddress = order.sourceAddress;
+        address sourceTokenAddress = order.sourceTokenAddress;
+        uint256 amountSourceToken = order.amountSourceToken;
+        ERC20(sourceTokenAddress).transferFrom(
+            address(this),
+            sourceAddress,
+            amountSourceToken
+        );
+
+        emit FundsRestituated(
+            sourceAddress,
+            sourceTokenAddress,
+            amountSourceToken,
+            _jsonHash
+        );
     }
 
     // INTERNAL METHODS:
@@ -127,5 +128,30 @@ contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
      */
     function isOrderSaved(bytes32 _jsonHash) private view returns (bool) {
         return (_jsonHash != emptyOrderHash);
+    }
+
+    function completeOrder(bytes32 _jsonHash) internal {
+        if (!isOrderSaved(_jsonHash)) {
+            revert CompleteOrderOnInexistentOrderError(_jsonHash);
+        }
+        // Remove the order from the mapping
+
+        OrderData.Order memory order = jsonHashToOrder[_jsonHash];
+        address payable solverAddress = payable(order.solverData.solverAddress);
+        solverAddress.transfer(order.solverData.stakeAmount);
+
+        // unlock the funds from the escrow and transfer them to the solver
+
+        ERC20(order.sourceTokenAddress).transferFrom(
+            address(this),
+            solverAddress,
+            order.amountSourceToken
+        );
+
+        // remove order from state
+
+        delete jsonHashToOrder[_jsonHash];
+
+        emit FundReleased(solverAddress, _jsonHash);
     }
 }
