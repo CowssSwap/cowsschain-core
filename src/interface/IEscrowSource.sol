@@ -4,10 +4,10 @@ pragma solidity ^0.8.17;
 interface IEscrowSource {
     // Errors
     error InvalidSourceChainError(uint256 _chainId);
+    error DestinationChainSameAsSourceError();
     error OrderAlreadySubmittedError(bytes32 _jsonHash);
     error OrderExpired(uint256 _blockTimestamp);
     error StakeInsufficientError(uint256 _stakeAmount);
-
     error CompleteOrderOnInexistentOrderError(bytes32 _jsonHash);
     error RestituateOrderOnInexistentOrderError(bytes32 _jsonHash);
     error RestituateOrderOnNonExpiredOrderError(bytes32 _jsonHash);

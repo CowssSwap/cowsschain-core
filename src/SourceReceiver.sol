@@ -51,4 +51,11 @@ abstract contract SourceReceiver is IEscrowSource, Owned {
     ) external onlyOwner {
         chainIdToMediator[chainId] = sender;
     }
+
+    function restituateFunds(bytes32 _jsonHash) external virtual;
+
+    function escrowFunds(
+        bytes memory _json,
+        bytes memory _signature
+    ) external payable virtual;
 }
