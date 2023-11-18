@@ -7,7 +7,6 @@ import "solmate/tokens/ERC20.sol";
 import "./BaseVerifierContract.sol";
 
 contract EscrowSource is BaseVerifierContract, IEscrowSource {
-
     uint256 chainId;
     bytes32 emptyOrderHash;
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
@@ -40,7 +39,6 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
     }
 
     /**
-     * @inheritdoc IEscrowSource.sol
      */
     function escrowFunds(
         bytes memory _json,
@@ -102,7 +100,6 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
     }
 
     /**
-     * @inheritdoc IEscrowSource.sol
      */
     function restituateFunds(bytes32 _jsonHash) external override {
         if (!isOrderSaved(_jsonHash)) {

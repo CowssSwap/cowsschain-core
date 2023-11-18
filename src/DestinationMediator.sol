@@ -17,8 +17,9 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
      */
     constructor(
         string memory _name,
-        string memory _version
-    ) BaseVerifierContract(_name, _version) {}
+        string memory _version,
+        address mailboxAddress
+    ) BaseVerifierContract(_name, _version) DestinationSender(mailboxAddress) {}
 
     function depositFunds(
         bytes memory _json,
@@ -26,7 +27,7 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
     ) external override {
         OrderData.FullOrder memory order = abi.decode(
             _json,
-            OrderData.FullOrder
+            (OrderData.FullOrder, )
         );
 
         // Signature verification
