@@ -20,7 +20,7 @@ abstract contract SourceReceiver is IEscrowSource, Owned {
 
     function handle(uint32 origin, bytes32 sender, 
     bytes calldata data
-    ) external payable onlyMailbox{
+    ) external payable onlyMailbox {
         address senderAddress = address(uint160(uint256(sender)));
     if (!isCorrectSender(origin, senderAddress)){
         revert incorrectSender();

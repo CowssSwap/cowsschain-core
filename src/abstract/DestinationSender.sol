@@ -22,9 +22,9 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         bytes memory jsonHashBytes = abi.encode(_jsonHash);
         uint256 sourceChainId = getSourceChainId(_jsonHash);
         bytes32 recipientAddress = bytes32(uint256(uint160(chainIdToEscrow[sourceChainId])));
-        bytes32 returned = mailbox.dispatch{value: msg.value}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
-        //TODO: check how to use returned
-        //transfer 
+        //TODO: use quote dispatch to know how much we should pay
+        uint256 fee = mailbox.quoteDispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
+        mailbox.dispatch{value: fee}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
     }
 
     function isCompleted(bytes32 _jsonHash) public view returns(bool){
