@@ -33,8 +33,6 @@ contract EscrowSource is BaseVerifierContract, IEscrowSource {
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
     }
 
-    /**
-     */
     function escrowFunds(
         bytes memory _json,
         bytes memory _signature
