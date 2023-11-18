@@ -1,29 +1,41 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-import "./interface/IDestinationMediator.sol";
 import "./BaseVerifierContract.sol";
 import "./utils/OrderData.sol";
+import "./DestinationSender.sol";
+
 import "solmate/tokens/ERC20.sol";
 
-contract DestinationMediator is IDestinationMediator, BaseVerifierContract {
+contract DestinationMediator is BaseVerifierContract, DestinationSender {
     mapping(uint256 => bool) isOrderBroadcasted;
 
-
     /**
-    @dev Init the contract 
-    @param _name : name of the authentification contract
-    @param _version : version of the authentifier 
+     * @dev Init the contract
+     * @param _name : name of the authentification contract
+     * @param _version : version of the authentifier
      */
-    constructor(string memory _name, string memory _version) BaseVerifierContract(_name, _version) {}
+    constructor(
+        string memory _name,
+        string memory _version
+    ) BaseVerifierContract(_name, _version) {}
 
     function broadcast(bytes32 _jsonHash) external override {}
 
-    function depositFunds(bytes memory _json, bytes memory _signature) external override {
-        OrderData.FullOrder memory order = abi.decode(_json, OrderData.FullOrder);
+    function depositFunds(
+        bytes memory _json,
+        bytes memory _signature
+    ) external override {
+        OrderData.FullOrder memory order = abi.decode(
+            _json,
+            OrderData.FullOrder
+        );
 
         // Signature verification
-        address signer = BaseVerifierContract(address(this)).verifySignature(_json, _signature);
+        address signer = BaseVerifierContract(address(this)).verifySignature(
+            _json,
+            _signature
+        );
         address sourceAddress = order.sourceAddress;
         if (signer != sourceAddress) {
             revert JsonAuthentificationError(signer, sourceAddress);
@@ -37,6 +49,6 @@ contract DestinationMediator is IDestinationMediator, BaseVerifierContract {
             order.minDestinationTokenAmount
         );
 
-        // TODO : Call the broadcast function
+        broadcast(order.jsonHash);
     }
 }

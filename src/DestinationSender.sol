@@ -10,7 +10,7 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
 
     mapping(bytes32 => uint256) public orderCompleted;
 
-    constructor (address mailboxAddress) Owned(msg.sender) {
+    constructor(address mailboxAddress) Owned(msg.sender) {
         setMailboxAddress(mailboxAddress);
     }
 
@@ -21,13 +21,16 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         //encoding the jsonHash
         bytes memory jsonHashBytes = abi.encode(_jsonHash);
         uint256 sourceChainId = getSourceChainId(_jsonHash);
-        bytes32 recipientAddress = bytes32(uint256(uint160(chainIdToEscrow[sourceChainId])));
+        bytes32 recipientAddress = bytes32(
+            uint256(uint160(chainIdToEscrow[sourceChainId]))
+        );
+
         //TODO: use quote dispatch to know how much we should pay
-        uint256 fee = mailbox.quoteDispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
-        mailbox.dispatch{value: fee}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
+        // uint256 fee = mailbox.quoteDispatch(uint32(sourceChainId), recipientAddress, jsonHashBytes);
+        // mailbox.dispatch{value: fee}(uint32(sourceChainId), recipientAddress, jsonHashBytes);
     }
 
-    function isCompleted(bytes32 _jsonHash) public view returns(bool){
+    function isCompleted(bytes32 _jsonHash) public view returns (bool) {
         return (orderCompleted[_jsonHash] != block.chainid);
     }
 
@@ -36,7 +39,9 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         orderCompleted[_jsonHash] = sourceChainID;
     }
 
-    function getSourceChainId(bytes32 _jsonHash) internal view returns(uint256){
+    function getSourceChainId(
+        bytes32 _jsonHash
+    ) internal view returns (uint256) {
         return orderCompleted[_jsonHash];
     }
 
@@ -44,7 +49,10 @@ abstract contract DestinationSender is IDestinationMediator, Owned {
         mailbox = IMailbox(mailboxAddress);
     }
 
-    function setReceiverForChainId(uint256 chainId, address receiver) external onlyOwner {
+    function setReceiverForChainId(
+        uint256 chainId,
+        address receiver
+    ) external onlyOwner {
         chainIdToEscrow[chainId] = receiver;
     }
 }
