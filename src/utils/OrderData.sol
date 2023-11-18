@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.17;
 
-library OrderData { 
-
+library OrderData {
     struct FullOrder {
         uint32 sourceChainId;
         uint32 destinationChainId;
-        uint256 jsonHash;
+        bytes32 jsonHash;
         uint256 nonce;
         uint256 amountSourceToken;
         uint256 minDestinationTokenAmount;
         uint256 expirationTimestamp;
+        uint256 stakeAmount;
         address sourceAddress;
         address destinationAddress;
         address sourceTokenAddress;
@@ -18,12 +18,13 @@ library OrderData {
     }
 
     struct Order {
-        uint256 jsonHash;
-        uint256 expirationTimestamp; 
+        bytes32 jsonHash;
+        uint256 expirationTimestamp;
         SolverData solverData;
     }
 
-    struct SolverData { 
-        uint256 stakeAmount; 
+    struct SolverData {
+        address solverAddress;
+        uint256 stakeAmount;
     }
 }
