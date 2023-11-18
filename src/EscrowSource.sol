@@ -2,21 +2,26 @@
 pragma solidity ^0.8.17;
 
 import "./interface/IEscrowSource.sol";
+import "./interface/IVerifierContract.sol";
 import "./utils/OrderData.sol";
 import "solmate/tokens/ERC20.sol";
 import "openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol";
+import "openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol";
 
-contract EscrowSource is IEscrowSource, EIP712 {
-    uint32 chainId;
+contract EscrowSource is IEscrowSource, IVerifierContract, EIP712 {
+    uint256 chainId;
     bytes32 domainSeparator;
     bytes32 emptyOrderHash;
 
     mapping(bytes32 => OrderData.Order) jsonHashToOrder;
 
+    string constant fullOrderType =
+        "FullOrder(uint32 sourceChainId,uint32 destinationChainId,bytes32 jsonHash,uint256 nonce,uint256 amountSourceToken,uint256 minDestinationTokenAmount,uint256 expirationTimestamp,uint256 stakeAmount,address sourceAddress,address destinationAddress,address sourceTokenAddress,address destinationTokenAddress)";
+
     constructor(
         string memory _name,
         string memory _version,
-        uint32 _chainId,
+        uint256 _chainId,
         bytes32 _domainSeparator
     ) EIP712(_name, _version) {
         chainId = _chainId;
@@ -31,6 +36,25 @@ contract EscrowSource is IEscrowSource, EIP712 {
             })
         });
         emptyOrderHash = keccak256(abi.encode(emptyOrder));
+    }
+
+    
+    function verifySignature(
+        bytes memory _json,
+        bytes memory _signature
+    ) external view override returns (address) {
+
+        bytes32 digest = _hashTypedDataV4(
+            keccak256(
+                abi.encode(
+                    keccak256(abi.encode(fullOrderType)),
+                    keccak256(_json)
+                )
+            )
+        );
+
+        address signer = ECDSA.recover(digest, _signature);
+        return signer;
     }
 
     function escrowFunds(
