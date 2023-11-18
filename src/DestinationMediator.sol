@@ -8,6 +8,7 @@ import "./DestinationSender.sol";
 import "solmate/tokens/ERC20.sol";
 
 contract DestinationMediator is BaseVerifierContract, DestinationSender {
+    
     mapping(uint256 => bool) isOrderBroadcasted;
 
     /**
@@ -18,9 +19,11 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
     constructor(
         string memory _name,
         string memory _version,
-        address mailboxAddress,
-        address mailboxAddress
-    ) BaseVerifierContract(_name, _version) DestinationSender(mailboxAddress) DestinationSender(mailboxAddress) {}
+        address _mailboxAddress
+    )
+        BaseVerifierContract(_name, _version)
+        DestinationSender(_mailboxAddress)
+    {}
 
     function depositFunds(
         bytes memory _json,
@@ -32,10 +35,8 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
         );
 
         // Signature verification
-        address signer = BaseVerifierContract(address(this)).verifySignature(
-            _json,
-            _signature
-        );
+        (address signer, bytes32 digest) = BaseVerifierContract(address(this))
+            .verifySignature(_json, _signature);
 
         address sourceAddress = order.sourceAddress;
         if (signer != sourceAddress) {
@@ -51,6 +52,6 @@ contract DestinationMediator is BaseVerifierContract, DestinationSender {
             order.minDestinationTokenAmount
         );
 
-        broadcast(order.jsonHash);
+        broadcast(digest);
     }
 }

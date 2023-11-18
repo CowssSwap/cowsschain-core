@@ -20,7 +20,6 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
         string memory _version,
         address mailboxAddress
     ) BaseVerifierContract(_name, _version) SourceReceiver(mailboxAddress) {
-
         OrderData.Order memory emptyOrder = OrderData.Order({
             jsonHash: bytes32(0),
             expirationTimestamp: 0,
@@ -46,8 +45,9 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
             (OrderData.FullOrder)
         );
 
-        address signatureAddress = BaseVerifierContract(address(this))
-            .verifySignature(_json, _signature);
+        (address signatureAddress, bytes32 digest) = BaseVerifierContract(
+            address(this)
+        ).verifySignature(_json, _signature);
 
         if (signatureAddress != json.sourceAddress) {
             revert JsonAuthentificationError(
@@ -59,8 +59,8 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
         if (block.chainid != json.sourceChainId) {
             revert InvalidSourceChainError(json.sourceChainId);
         }
-        
-        if (json.sourceChainId == json.sourceChainId){
+
+        if (json.sourceChainId == json.sourceChainId) {
             revert DestinationChainSameAsSourceError();
         }
 
@@ -68,8 +68,8 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
             revert OrderExpired(block.timestamp);
         }
 
-        if (isOrderSaved(json.jsonHash)) {
-            revert OrderAlreadySubmittedError(json.jsonHash);
+        if (isOrderSaved(digest)) {
+            revert OrderAlreadySubmittedError(digest);
         }
 
         if (msg.value < json.stakeAmount) {
@@ -85,8 +85,8 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
         );
 
         // Write the data into the state of the Escrow Constract
-        jsonHashToOrder[json.jsonHash] = OrderData.Order({
-            jsonHash: json.jsonHash,
+        jsonHashToOrder[digest] = OrderData.Order({
+            jsonHash: digest,
             expirationTimestamp: json.expirationTimestamp,
             sourceTokenAddress: json.sourceTokenAddress,
             sourceAddress: json.sourceAddress,
@@ -97,7 +97,7 @@ contract EscrowSource is BaseVerifierContract, SourceReceiver {
             })
         });
 
-        emit FundsEscrowed(json.expirationTimestamp, json.jsonHash);
+        emit FundsEscrowed(json.expirationTimestamp, digest);
     }
 
     /**

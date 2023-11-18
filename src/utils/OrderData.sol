@@ -5,16 +5,17 @@ library OrderData {
     struct FullOrder {
         uint32 sourceChainId;
         uint32 destinationChainId;
-        bytes32 jsonHash;
         uint256 nonce;
         uint256 amountSourceToken;
         uint256 minDestinationTokenAmount;
         uint256 expirationTimestamp;
         uint256 stakeAmount;
+        uint256 orderIndex;
         address sourceAddress;
         address destinationAddress;
         address sourceTokenAddress;
         address destinationTokenAddress;
+        bytes data;
     }
 
     struct Order {

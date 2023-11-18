@@ -7,10 +7,4 @@ contract test is Test {
         address user;
         bytes data;
     }
-
-    function setUp() public {
-        Order memory order = Order({user: address(0), data: abi.encode(0)});
-
-        keccak256(abi.encode(order));
-    }
 }
