@@ -3,6 +3,7 @@ pragma solidity ^0.8.17;
 
 import "openzeppelin-contracts/contracts/utils/cryptography/EIP712.sol";
 import "openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol";
+import "./utils/OrderData.sol";
 
 abstract contract BaseVerifierContract is EIP712 {
     error JsonAuthentificationError(address _signer, address _sourceAddress);
@@ -27,7 +28,7 @@ abstract contract BaseVerifierContract is EIP712 {
         bytes memory _json,
         bytes memory _signature
     ) external view returns (address, bytes32) {
-        OrderData.FullOrder order = abi.decode(_json, (OrderData.FullOrder));
+        OrderData.FullOrder memory order = abi.decode(_json, (OrderData.FullOrder));
         bytes32 digest = _hashTypedDataV4(
             keccak256(
                 // static types should be id. Dynamics types should be encoded static.
@@ -45,7 +46,7 @@ abstract contract BaseVerifierContract is EIP712 {
                     order.destinationAddress,
                     order.sourceTokenAddress,
                     order.destinationTokenAddress,
-                    keccak256(abi.encode(data))
+                    keccak256(abi.encode(order.data))
                 )
             )
         );
