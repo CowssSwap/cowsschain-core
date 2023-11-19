@@ -1,0 +1,438 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "BroadcasNotAllowed",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "message",
+          "type": "bytes32"
+        }
+      ],
+      "name": "Broadcast",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "broadcast",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_json",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "depositFunds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "broadcast(bytes32)": "2596f4fc",
+    "depositFunds(bytes,bytes)": "f65e61bc"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"BroadcasNotAllowed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"message\",\"type\":\"bytes32\"}],\"name\":\"Broadcast\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"broadcast\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_json\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"depositFunds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"broadcast(bytes32)\":{\"notice\":\"Broadcast the message to the bridge if it has not been broadcasted\"},\"depositFunds(bytes,bytes)\":{\"notice\":\"Function verifies the validity of the json. Then, the function retrieves the funds from the solver and store the source chainId into the orderCompleted mapping.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interface/IDestinationMediator.sol\":\"IDestinationMediator\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":hyperlane-monorepo/=lib/hyperlane-monorepo/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solmate/=lib/solmate/src/\"]},\"sources\":{\"src/interface/IDestinationMediator.sol\":{\"keccak256\":\"0x5143043f70e09a8a59f0cb77941d8999800d07dd50979199ce61493852225d95\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://10f5cc822be66b9e69e8ac20760ea6b9efb78125e3a0d03bce60aec9312dda52\",\"dweb:/ipfs/QmWuZn3AqgkXNb6GG9N3Xz6sgnQWGbqb5oUQiMNWga4JUv\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "type": "error",
+          "name": "BroadcasNotAllowed"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "message",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "Broadcast",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "broadcast"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "_json",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "depositFunds"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "broadcast(bytes32)": {
+            "notice": "Broadcast the message to the bridge if it has not been broadcasted"
+          },
+          "depositFunds(bytes,bytes)": {
+            "notice": "Function verifies the validity of the json. Then, the function retrieves the funds from the solver and store the source chainId into the orderCompleted mapping."
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/",
+        "hyperlane-monorepo/=lib/hyperlane-monorepo/",
+        "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        "solmate/=lib/solmate/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/interface/IDestinationMediator.sol": "IDestinationMediator"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/interface/IDestinationMediator.sol": {
+        "keccak256": "0x5143043f70e09a8a59f0cb77941d8999800d07dd50979199ce61493852225d95",
+        "urls": [
+          "bzz-raw://10f5cc822be66b9e69e8ac20760ea6b9efb78125e3a0d03bce60aec9312dda52",
+          "dweb:/ipfs/QmWuZn3AqgkXNb6GG9N3Xz6sgnQWGbqb5oUQiMNWga4JUv"
+        ],
+        "license": "UNLICENSED"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/interface/IDestinationMediator.sol",
+    "id": 47439,
+    "exportedSymbols": {
+      "IDestinationMediator": [
+        47438
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "39:584:37",
+    "nodes": [
+      {
+        "id": 47417,
+        "nodeType": "PragmaDirective",
+        "src": "39:24:37",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 47438,
+        "nodeType": "ContractDefinition",
+        "src": "65:557:37",
+        "nodes": [
+          {
+            "id": 47419,
+            "nodeType": "ErrorDefinition",
+            "src": "116:27:37",
+            "nodes": [],
+            "errorSelector": "2340a3e7",
+            "name": "BroadcasNotAllowed",
+            "nameLocation": "122:18:37",
+            "parameters": {
+              "id": 47418,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "140:2:37"
+            }
+          },
+          {
+            "id": 47423,
+            "nodeType": "EventDefinition",
+            "src": "163:33:37",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "8899289005e783b4fea70b251d96c92a2cd2a5d65404cb673ef68f56076821fa",
+            "name": "Broadcast",
+            "nameLocation": "169:9:37",
+            "parameters": {
+              "id": 47422,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47421,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "message",
+                  "nameLocation": "187:7:37",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47423,
+                  "src": "179:15:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47420,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "179:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "178:17:37"
+            }
+          },
+          {
+            "id": 47431,
+            "nodeType": "FunctionDefinition",
+            "src": "393:76:37",
+            "nodes": [],
+            "documentation": {
+              "id": 47424,
+              "nodeType": "StructuredDocumentation",
+              "src": "202:186:37",
+              "text": " Function verifies the validity of the json. Then, the function retrieves the funds from the solver\n and store the source chainId into the orderCompleted mapping."
+            },
+            "functionSelector": "f65e61bc",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "depositFunds",
+            "nameLocation": "402:12:37",
+            "parameters": {
+              "id": 47429,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47426,
+                  "mutability": "mutable",
+                  "name": "_json",
+                  "nameLocation": "428:5:37",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47431,
+                  "src": "415:18:37",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 47425,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "415:5:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47428,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "448:10:37",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47431,
+                  "src": "435:23:37",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 47427,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:5:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "414:45:37"
+            },
+            "returnParameters": {
+              "id": 47430,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "468:0:37"
+            },
+            "scope": 47438,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 47437,
+            "nodeType": "FunctionDefinition",
+            "src": "565:55:37",
+            "nodes": [],
+            "documentation": {
+              "id": 47432,
+              "nodeType": "StructuredDocumentation",
+              "src": "475:85:37",
+              "text": " Broadcast the message to the bridge if it has not been broadcasted"
+            },
+            "functionSelector": "2596f4fc",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "broadcast",
+            "nameLocation": "574:9:37",
+            "parameters": {
+              "id": 47435,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47434,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "592:9:37",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47437,
+                  "src": "584:17:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47433,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "584:7:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "583:19:37"
+            },
+            "returnParameters": {
+              "id": 47436,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "619:0:37"
+            },
+            "scope": 47438,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IDestinationMediator",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          47438
+        ],
+        "name": "IDestinationMediator",
+        "nameLocation": "75:20:37",
+        "scope": 47439,
+        "usedErrors": [
+          47419
+        ],
+        "usedEvents": [
+          47423
+        ]
+      }
+    ],
+    "license": "UNLICENSED"
+  },
+  "id": 37
+}

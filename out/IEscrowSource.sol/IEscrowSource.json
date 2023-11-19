@@ -1,0 +1,1247 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CompleteOrderOnInexistentOrderError",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "DestinationChainSameAsSourceError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_chainId",
+          "type": "uint256"
+        }
+      ],
+      "name": "InvalidSourceChainError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "OrderAlreadySubmittedError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_blockTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "OrderExpired",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RestituateOrderOnInexistentOrderError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RestituateOrderOnNonExpiredOrderError",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_stakeAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "StakeInsufficientError",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_solverAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "FundReleased",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_expirationTimestamp",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "FundsEscrowed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sourceAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_sourceTokenAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "_amountSourceToken",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "FundsRestituated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_json",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "escrowFunds",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_jsonHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "restituateFunds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "escrowFunds(bytes,bytes)": "59785c74",
+    "restituateFunds(bytes32)": "7a3c7a1c"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"CompleteOrderOnInexistentOrderError\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"DestinationChainSameAsSourceError\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_chainId\",\"type\":\"uint256\"}],\"name\":\"InvalidSourceChainError\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"OrderAlreadySubmittedError\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_blockTimestamp\",\"type\":\"uint256\"}],\"name\":\"OrderExpired\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"RestituateOrderOnInexistentOrderError\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"RestituateOrderOnNonExpiredOrderError\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_stakeAmount\",\"type\":\"uint256\"}],\"name\":\"StakeInsufficientError\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_solverAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"FundReleased\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_expirationTimestamp\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"FundsEscrowed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sourceAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_sourceTokenAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_amountSourceToken\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"FundsRestituated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_json\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"escrowFunds\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_jsonHash\",\"type\":\"bytes32\"}],\"name\":\"restituateFunds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"escrowFunds(bytes,bytes)\":{\"notice\":\"The function shall verify the json's autheticity, that the order was not already submitted. Then, check the validity of the source chain id and escrow the user's tokens.\"},\"restituateFunds(bytes32)\":{\"notice\":\"The function shall return the locked funds of the solver to the owner address\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/interface/IEscrowSource.sol\":\"IEscrowSource\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":hyperlane-monorepo/=lib/hyperlane-monorepo/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solmate/=lib/solmate/src/\"]},\"sources\":{\"src/interface/IEscrowSource.sol\":{\"keccak256\":\"0xac6e0be185ae1d2adf11a105e4ec03d82e996e0b3211db4d47fee29ff11c541f\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://b6ca2d9c80fb80749cef59957a91b95c1b1c5849f20c4e7e403cdd2b6cfe5d59\",\"dweb:/ipfs/QmYhErEKJ37ynkMC31fTeN3XegVur5qST6nJ1SxjwLiJLJ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "type": "error",
+          "name": "CompleteOrderOnInexistentOrderError"
+        },
+        {
+          "inputs": [],
+          "type": "error",
+          "name": "DestinationChainSameAsSourceError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_chainId",
+              "type": "uint256"
+            }
+          ],
+          "type": "error",
+          "name": "InvalidSourceChainError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "type": "error",
+          "name": "OrderAlreadySubmittedError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_blockTimestamp",
+              "type": "uint256"
+            }
+          ],
+          "type": "error",
+          "name": "OrderExpired"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "type": "error",
+          "name": "RestituateOrderOnInexistentOrderError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "type": "error",
+          "name": "RestituateOrderOnNonExpiredOrderError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_stakeAmount",
+              "type": "uint256"
+            }
+          ],
+          "type": "error",
+          "name": "StakeInsufficientError"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_solverAddress",
+              "type": "address",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "FundReleased",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_expirationTimestamp",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "FundsEscrowed",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_sourceAddress",
+              "type": "address",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "_sourceTokenAddress",
+              "type": "address",
+              "indexed": false
+            },
+            {
+              "internalType": "uint256",
+              "name": "_amountSourceToken",
+              "type": "uint256",
+              "indexed": false
+            },
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "FundsRestituated",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "_json",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "_signature",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "escrowFunds"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "_jsonHash",
+              "type": "bytes32"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "restituateFunds"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "escrowFunds(bytes,bytes)": {
+            "notice": "The function shall verify the json's autheticity, that the order was not already submitted. Then, check the validity of the source chain id and escrow the user's tokens."
+          },
+          "restituateFunds(bytes32)": {
+            "notice": "The function shall return the locked funds of the solver to the owner address"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/",
+        "hyperlane-monorepo/=lib/hyperlane-monorepo/",
+        "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        "solmate/=lib/solmate/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/interface/IEscrowSource.sol": "IEscrowSource"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/interface/IEscrowSource.sol": {
+        "keccak256": "0xac6e0be185ae1d2adf11a105e4ec03d82e996e0b3211db4d47fee29ff11c541f",
+        "urls": [
+          "bzz-raw://b6ca2d9c80fb80749cef59957a91b95c1b1c5849f20c4e7e403cdd2b6cfe5d59",
+          "dweb:/ipfs/QmYhErEKJ37ynkMC31fTeN3XegVur5qST6nJ1SxjwLiJLJ"
+        ],
+        "license": "UNLICENSED"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/interface/IEscrowSource.sol",
+    "id": 47508,
+    "exportedSymbols": {
+      "IEscrowSource": [
+        47507
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "39:1325:38",
+    "nodes": [
+      {
+        "id": 47440,
+        "nodeType": "PragmaDirective",
+        "src": "39:24:38",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".17"
+        ]
+      },
+      {
+        "id": 47507,
+        "nodeType": "ContractDefinition",
+        "src": "65:1298:38",
+        "nodes": [
+          {
+            "id": 47444,
+            "nodeType": "ErrorDefinition",
+            "src": "109:48:38",
+            "nodes": [],
+            "errorSelector": "98226d37",
+            "name": "InvalidSourceChainError",
+            "nameLocation": "115:23:38",
+            "parameters": {
+              "id": 47443,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47442,
+                  "mutability": "mutable",
+                  "name": "_chainId",
+                  "nameLocation": "147:8:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47444,
+                  "src": "139:16:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47441,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "139:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "138:18:38"
+            }
+          },
+          {
+            "id": 47446,
+            "nodeType": "ErrorDefinition",
+            "src": "162:42:38",
+            "nodes": [],
+            "errorSelector": "deb2c909",
+            "name": "DestinationChainSameAsSourceError",
+            "nameLocation": "168:33:38",
+            "parameters": {
+              "id": 47445,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "201:2:38"
+            }
+          },
+          {
+            "id": 47450,
+            "nodeType": "ErrorDefinition",
+            "src": "209:52:38",
+            "nodes": [],
+            "errorSelector": "a09a756c",
+            "name": "OrderAlreadySubmittedError",
+            "nameLocation": "215:26:38",
+            "parameters": {
+              "id": 47449,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47448,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "250:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47450,
+                  "src": "242:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47447,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "242:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "241:19:38"
+            }
+          },
+          {
+            "id": 47454,
+            "nodeType": "ErrorDefinition",
+            "src": "266:44:38",
+            "nodes": [],
+            "errorSelector": "1ad308dc",
+            "name": "OrderExpired",
+            "nameLocation": "272:12:38",
+            "parameters": {
+              "id": 47453,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47452,
+                  "mutability": "mutable",
+                  "name": "_blockTimestamp",
+                  "nameLocation": "293:15:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47454,
+                  "src": "285:23:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47451,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "285:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "284:25:38"
+            }
+          },
+          {
+            "id": 47458,
+            "nodeType": "ErrorDefinition",
+            "src": "315:51:38",
+            "nodes": [],
+            "errorSelector": "a370ba59",
+            "name": "StakeInsufficientError",
+            "nameLocation": "321:22:38",
+            "parameters": {
+              "id": 47457,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47456,
+                  "mutability": "mutable",
+                  "name": "_stakeAmount",
+                  "nameLocation": "352:12:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47458,
+                  "src": "344:20:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47455,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "344:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "343:22:38"
+            }
+          },
+          {
+            "id": 47462,
+            "nodeType": "ErrorDefinition",
+            "src": "371:61:38",
+            "nodes": [],
+            "errorSelector": "e14076eb",
+            "name": "CompleteOrderOnInexistentOrderError",
+            "nameLocation": "377:35:38",
+            "parameters": {
+              "id": 47461,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47460,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "421:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47462,
+                  "src": "413:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47459,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "413:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "412:19:38"
+            }
+          },
+          {
+            "id": 47466,
+            "nodeType": "ErrorDefinition",
+            "src": "437:63:38",
+            "nodes": [],
+            "errorSelector": "17b6ea77",
+            "name": "RestituateOrderOnInexistentOrderError",
+            "nameLocation": "443:37:38",
+            "parameters": {
+              "id": 47465,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47464,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "489:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47466,
+                  "src": "481:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47463,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "481:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "480:19:38"
+            }
+          },
+          {
+            "id": 47470,
+            "nodeType": "ErrorDefinition",
+            "src": "505:63:38",
+            "nodes": [],
+            "errorSelector": "095f1944",
+            "name": "RestituateOrderOnNonExpiredOrderError",
+            "nameLocation": "511:37:38",
+            "parameters": {
+              "id": 47469,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47468,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "557:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47470,
+                  "src": "549:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47467,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "549:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "548:19:38"
+            }
+          },
+          {
+            "id": 47476,
+            "nodeType": "EventDefinition",
+            "src": "588:69:38",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "34133732bf92aca538499383e3940238da53df32d08c709068feb5285b160dd4",
+            "name": "FundsEscrowed",
+            "nameLocation": "594:13:38",
+            "parameters": {
+              "id": 47475,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47472,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_expirationTimestamp",
+                  "nameLocation": "616:20:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47476,
+                  "src": "608:28:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47471,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "608:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47474,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "646:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47476,
+                  "src": "638:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47473,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "638:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "607:49:38"
+            }
+          },
+          {
+            "id": 47482,
+            "nodeType": "EventDefinition",
+            "src": "662:62:38",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "2a774c72b5bdbfdf21e5c69bb2b5bdf1e41fc0e91c667b121f03ec1f3e036f40",
+            "name": "FundReleased",
+            "nameLocation": "668:12:38",
+            "parameters": {
+              "id": 47481,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47478,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_solverAddress",
+                  "nameLocation": "689:14:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47482,
+                  "src": "681:22:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 47477,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "681:7:38",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47480,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "713:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47482,
+                  "src": "705:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47479,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "705:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "680:43:38"
+            }
+          },
+          {
+            "id": 47492,
+            "nodeType": "EventDefinition",
+            "src": "729:161:38",
+            "nodes": [],
+            "anonymous": false,
+            "eventSelector": "69bc163e958f931b649348999a575462ec371ab297549a26ba3b7a65d5c1914a",
+            "name": "FundsRestituated",
+            "nameLocation": "735:16:38",
+            "parameters": {
+              "id": 47491,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47484,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_sourceAddress",
+                  "nameLocation": "769:14:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47492,
+                  "src": "761:22:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 47483,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "761:7:38",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47486,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_sourceTokenAddress",
+                  "nameLocation": "801:19:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47492,
+                  "src": "793:27:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 47485,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "793:7:38",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47488,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_amountSourceToken",
+                  "nameLocation": "838:18:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47492,
+                  "src": "830:26:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 47487,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "830:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47490,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "874:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47492,
+                  "src": "866:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47489,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "866:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "751:138:38"
+            }
+          },
+          {
+            "id": 47500,
+            "nodeType": "FunctionDefinition",
+            "src": "1096:105:38",
+            "nodes": [],
+            "documentation": {
+              "id": 47493,
+              "nodeType": "StructuredDocumentation",
+              "src": "896:195:38",
+              "text": " The function shall verify the json's autheticity, that the order was not already submitted.\n Then, check the validity of the source chain id and escrow the user's tokens."
+            },
+            "functionSelector": "59785c74",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "escrowFunds",
+            "nameLocation": "1105:11:38",
+            "parameters": {
+              "id": 47498,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47495,
+                  "mutability": "mutable",
+                  "name": "_json",
+                  "nameLocation": "1139:5:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47500,
+                  "src": "1126:18:38",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 47494,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1126:5:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 47497,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "1167:10:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47500,
+                  "src": "1154:23:38",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 47496,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1154:5:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1116:67:38"
+            },
+            "returnParameters": {
+              "id": 47499,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1200:0:38"
+            },
+            "scope": 47507,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 47506,
+            "nodeType": "FunctionDefinition",
+            "src": "1308:53:38",
+            "nodes": [],
+            "documentation": {
+              "id": 47501,
+              "nodeType": "StructuredDocumentation",
+              "src": "1207:96:38",
+              "text": " The function shall return the locked funds of the solver to the owner address"
+            },
+            "functionSelector": "7a3c7a1c",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "restituateFunds",
+            "nameLocation": "1317:15:38",
+            "parameters": {
+              "id": 47504,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47503,
+                  "mutability": "mutable",
+                  "name": "_jsonHash",
+                  "nameLocation": "1341:9:38",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47506,
+                  "src": "1333:17:38",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 47502,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1333:7:38",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1332:19:38"
+            },
+            "returnParameters": {
+              "id": 47505,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1360:0:38"
+            },
+            "scope": 47507,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IEscrowSource",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          47507
+        ],
+        "name": "IEscrowSource",
+        "nameLocation": "75:13:38",
+        "scope": 47508,
+        "usedErrors": [
+          47444,
+          47446,
+          47450,
+          47454,
+          47458,
+          47462,
+          47466,
+          47470
+        ],
+        "usedEvents": [
+          47476,
+          47482,
+          47492
+        ]
+      }
+    ],
+    "license": "UNLICENSED"
+  },
+  "id": 38
+}

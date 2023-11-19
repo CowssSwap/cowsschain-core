@@ -1,0 +1,738 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "hookType",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "metadata",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "message",
+          "type": "bytes"
+        }
+      ],
+      "name": "postDispatch",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "metadata",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "message",
+          "type": "bytes"
+        }
+      ],
+      "name": "quoteDispatch",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "metadata",
+          "type": "bytes"
+        }
+      ],
+      "name": "supportsMetadata",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "hookType()": "e445e7dd",
+    "postDispatch(bytes,bytes)": "086011b9",
+    "quoteDispatch(bytes,bytes)": "aaccd230",
+    "supportsMetadata(bytes)": "e5320bb9"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"hookType\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"metadata\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"message\",\"type\":\"bytes\"}],\"name\":\"postDispatch\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"metadata\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"message\",\"type\":\"bytes\"}],\"name\":\"quoteDispatch\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"metadata\",\"type\":\"bytes\"}],\"name\":\"supportsMetadata\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"postDispatch(bytes,bytes)\":{\"params\":{\"message\":\"The message passed from the Mailbox.dispatch() call\",\"metadata\":\"The metadata required for the hook\"}},\"quoteDispatch(bytes,bytes)\":{\"params\":{\"message\":\"The message passed from the Mailbox.dispatch() call\",\"metadata\":\"The metadata required for the hook\"},\"returns\":{\"_0\":\"Quoted payment for the postDispatch call\"}},\"supportsMetadata(bytes)\":{\"params\":{\"metadata\":\"metadata\"},\"returns\":{\"_0\":\"Whether the hook supports metadata\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"hookType()\":{\"notice\":\"Returns an enum that represents the type of hook\"},\"postDispatch(bytes,bytes)\":{\"notice\":\"Post action after a message is dispatched via the Mailbox\"},\"quoteDispatch(bytes,bytes)\":{\"notice\":\"Compute the payment required by the postDispatch call\"},\"supportsMetadata(bytes)\":{\"notice\":\"Returns whether the hook supports metadata\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"lib/hyperlane-monorepo/solidity/contracts/interfaces/hooks/IPostDispatchHook.sol\":\"IPostDispatchHook\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\",\":hyperlane-monorepo/=lib/hyperlane-monorepo/\",\":openzeppelin-contracts/=lib/openzeppelin-contracts/\",\":solmate/=lib/solmate/src/\"]},\"sources\":{\"lib/hyperlane-monorepo/solidity/contracts/interfaces/hooks/IPostDispatchHook.sol\":{\"keccak256\":\"0xe315e6ecacc18c836349bb2792187066c3c743aaa7f2504d181be255f5c9632e\",\"license\":\"MIT OR Apache-2.0\",\"urls\":[\"bzz-raw://d0c8b081c967e112cddb70a6377a1c8e3950dd225fc29dcda607071cfb168447\",\"dweb:/ipfs/QmcorLLZueFg69B8iaU3rr42CrEP7PPH3HeJLspV5WAoKZ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.20+commit.a1b79de6"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "hookType",
+          "outputs": [
+            {
+              "internalType": "uint8",
+              "name": "",
+              "type": "uint8"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "metadata",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "message",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "payable",
+          "type": "function",
+          "name": "postDispatch"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "metadata",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes",
+              "name": "message",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "quoteDispatch",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes",
+              "name": "metadata",
+              "type": "bytes"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "supportsMetadata",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {
+          "postDispatch(bytes,bytes)": {
+            "params": {
+              "message": "The message passed from the Mailbox.dispatch() call",
+              "metadata": "The metadata required for the hook"
+            }
+          },
+          "quoteDispatch(bytes,bytes)": {
+            "params": {
+              "message": "The message passed from the Mailbox.dispatch() call",
+              "metadata": "The metadata required for the hook"
+            },
+            "returns": {
+              "_0": "Quoted payment for the postDispatch call"
+            }
+          },
+          "supportsMetadata(bytes)": {
+            "params": {
+              "metadata": "metadata"
+            },
+            "returns": {
+              "_0": "Whether the hook supports metadata"
+            }
+          }
+        },
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {
+          "hookType()": {
+            "notice": "Returns an enum that represents the type of hook"
+          },
+          "postDispatch(bytes,bytes)": {
+            "notice": "Post action after a message is dispatched via the Mailbox"
+          },
+          "quoteDispatch(bytes,bytes)": {
+            "notice": "Compute the payment required by the postDispatch call"
+          },
+          "supportsMetadata(bytes)": {
+            "notice": "Returns whether the hook supports metadata"
+          }
+        },
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/",
+        "hyperlane-monorepo/=lib/hyperlane-monorepo/",
+        "openzeppelin-contracts/=lib/openzeppelin-contracts/",
+        "solmate/=lib/solmate/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "lib/hyperlane-monorepo/solidity/contracts/interfaces/hooks/IPostDispatchHook.sol": "IPostDispatchHook"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "lib/hyperlane-monorepo/solidity/contracts/interfaces/hooks/IPostDispatchHook.sol": {
+        "keccak256": "0xe315e6ecacc18c836349bb2792187066c3c743aaa7f2504d181be255f5c9632e",
+        "urls": [
+          "bzz-raw://d0c8b081c967e112cddb70a6377a1c8e3950dd225fc29dcda607071cfb168447",
+          "dweb:/ipfs/QmcorLLZueFg69B8iaU3rr42CrEP7PPH3HeJLspV5WAoKZ"
+        ],
+        "license": "MIT OR Apache-2.0"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "lib/hyperlane-monorepo/solidity/contracts/interfaces/hooks/IPostDispatchHook.sol",
+    "id": 43667,
+    "exportedSymbols": {
+      "IPostDispatchHook": [
+        43666
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "46:1723:20",
+    "nodes": [
+      {
+        "id": 43623,
+        "nodeType": "PragmaDirective",
+        "src": "46:24:20",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          ">=",
+          "0.8",
+          ".0"
+        ]
+      },
+      {
+        "id": 43666,
+        "nodeType": "ContractDefinition",
+        "src": "385:1383:20",
+        "nodes": [
+          {
+            "id": 43633,
+            "nodeType": "EnumDefinition",
+            "src": "419:213:20",
+            "nodes": [],
+            "canonicalName": "IPostDispatchHook.Types",
+            "members": [
+              {
+                "id": 43624,
+                "name": "UNUSED",
+                "nameLocation": "440:6:20",
+                "nodeType": "EnumValue",
+                "src": "440:6:20"
+              },
+              {
+                "id": 43625,
+                "name": "ROUTING",
+                "nameLocation": "456:7:20",
+                "nodeType": "EnumValue",
+                "src": "456:7:20"
+              },
+              {
+                "id": 43626,
+                "name": "AGGREGATION",
+                "nameLocation": "473:11:20",
+                "nodeType": "EnumValue",
+                "src": "473:11:20"
+              },
+              {
+                "id": 43627,
+                "name": "MERKLE_TREE",
+                "nameLocation": "494:11:20",
+                "nodeType": "EnumValue",
+                "src": "494:11:20"
+              },
+              {
+                "id": 43628,
+                "name": "INTERCHAIN_GAS_PAYMASTER",
+                "nameLocation": "515:24:20",
+                "nodeType": "EnumValue",
+                "src": "515:24:20"
+              },
+              {
+                "id": 43629,
+                "name": "FALLBACK_ROUTING",
+                "nameLocation": "549:16:20",
+                "nodeType": "EnumValue",
+                "src": "549:16:20"
+              },
+              {
+                "id": 43630,
+                "name": "ID_AUTH_ISM",
+                "nameLocation": "575:11:20",
+                "nodeType": "EnumValue",
+                "src": "575:11:20"
+              },
+              {
+                "id": 43631,
+                "name": "PAUSABLE",
+                "nameLocation": "596:8:20",
+                "nodeType": "EnumValue",
+                "src": "596:8:20"
+              },
+              {
+                "id": 43632,
+                "name": "PROTOCOL_FEE",
+                "nameLocation": "614:12:20",
+                "nodeType": "EnumValue",
+                "src": "614:12:20"
+              }
+            ],
+            "name": "Types",
+            "nameLocation": "424:5:20"
+          },
+          {
+            "id": 43639,
+            "nodeType": "FunctionDefinition",
+            "src": "718:50:20",
+            "nodes": [],
+            "documentation": {
+              "id": 43634,
+              "nodeType": "StructuredDocumentation",
+              "src": "638:75:20",
+              "text": " @notice Returns an enum that represents the type of hook"
+            },
+            "functionSelector": "e445e7dd",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "hookType",
+            "nameLocation": "727:8:20",
+            "parameters": {
+              "id": 43635,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "735:2:20"
+            },
+            "returnParameters": {
+              "id": 43638,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43637,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43639,
+                  "src": "761:5:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 43636,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "761:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "760:7:20"
+            },
+            "scope": 43666,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 43647,
+            "nodeType": "FunctionDefinition",
+            "src": "930:94:20",
+            "nodes": [],
+            "documentation": {
+              "id": 43640,
+              "nodeType": "StructuredDocumentation",
+              "src": "774:151:20",
+              "text": " @notice Returns whether the hook supports metadata\n @param metadata metadata\n @return Whether the hook supports metadata"
+            },
+            "functionSelector": "e5320bb9",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "supportsMetadata",
+            "nameLocation": "939:16:20",
+            "parameters": {
+              "id": 43643,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43642,
+                  "mutability": "mutable",
+                  "name": "metadata",
+                  "nameLocation": "980:8:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43647,
+                  "src": "965:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 43641,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "965:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "955:39:20"
+            },
+            "returnParameters": {
+              "id": 43646,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43645,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43647,
+                  "src": "1018:4:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 43644,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1018:4:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1017:6:20"
+            },
+            "scope": 43666,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 43655,
+            "nodeType": "FunctionDefinition",
+            "src": "1251:110:20",
+            "nodes": [],
+            "documentation": {
+              "id": 43648,
+              "nodeType": "StructuredDocumentation",
+              "src": "1030:216:20",
+              "text": " @notice Post action after a message is dispatched via the Mailbox\n @param metadata The metadata required for the hook\n @param message The message passed from the Mailbox.dispatch() call"
+            },
+            "functionSelector": "086011b9",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "postDispatch",
+            "nameLocation": "1260:12:20",
+            "parameters": {
+              "id": 43653,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43650,
+                  "mutability": "mutable",
+                  "name": "metadata",
+                  "nameLocation": "1297:8:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43655,
+                  "src": "1282:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 43649,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1282:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43652,
+                  "mutability": "mutable",
+                  "name": "message",
+                  "nameLocation": "1330:7:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43655,
+                  "src": "1315:22:20",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 43651,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1315:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1272:71:20"
+            },
+            "returnParameters": {
+              "id": 43654,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1360:0:20"
+            },
+            "scope": 43666,
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 43665,
+            "nodeType": "FunctionDefinition",
+            "src": "1640:126:20",
+            "nodes": [],
+            "documentation": {
+              "id": 43656,
+              "nodeType": "StructuredDocumentation",
+              "src": "1367:268:20",
+              "text": " @notice Compute the payment required by the postDispatch call\n @param metadata The metadata required for the hook\n @param message The message passed from the Mailbox.dispatch() call\n @return Quoted payment for the postDispatch call"
+            },
+            "functionSelector": "aaccd230",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "quoteDispatch",
+            "nameLocation": "1649:13:20",
+            "parameters": {
+              "id": 43661,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43658,
+                  "mutability": "mutable",
+                  "name": "metadata",
+                  "nameLocation": "1687:8:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43665,
+                  "src": "1672:23:20",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 43657,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1672:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 43660,
+                  "mutability": "mutable",
+                  "name": "message",
+                  "nameLocation": "1720:7:20",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43665,
+                  "src": "1705:22:20",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 43659,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1705:5:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1662:71:20"
+            },
+            "returnParameters": {
+              "id": 43664,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 43663,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 43665,
+                  "src": "1757:7:20",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 43662,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1757:7:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1756:9:20"
+            },
+            "scope": 43666,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPostDispatchHook",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          43666
+        ],
+        "name": "IPostDispatchHook",
+        "nameLocation": "395:17:20",
+        "scope": 43667,
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "license": "MIT OR Apache-2.0"
+  },
+  "id": 20
+}
