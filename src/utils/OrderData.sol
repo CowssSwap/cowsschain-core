@@ -3,8 +3,8 @@ pragma solidity ^0.8.17;
 
 library OrderData {
     struct FullOrder {
-        uint32 sourceChainId;
-        uint32 destinationChainId;
+        uint256 sourceChainId;
+        uint256 destinationChainId;
         uint256 nonce;
         uint256 amountSourceToken;
         uint256 minDestinationTokenAmount;

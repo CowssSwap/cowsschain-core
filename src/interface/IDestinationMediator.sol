@@ -4,10 +4,8 @@ pragma solidity ^0.8.17;
 interface IDestinationMediator {
     // errors
     error BroadcasNotAllowed();
-
     // events
     event Broadcast(bytes32 message);
-
     /**
      * Function verifies the validity of the json. Then, the function retrieves the funds from the solver
      * and store the source chainId into the orderCompleted mapping.
